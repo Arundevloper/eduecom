@@ -4,7 +4,7 @@ import HomeCarousel from "./_components/HomeCarousel";
 import ShopByAge from "./_components/ShopByAge";
 import AwardWinningComponent from "./_components/AwardWinningComponent";
 import ShopByPrice from "./_components/ShopByPrice";
-
+import LatestArrivals from "./_components/LatestArrivals";
 const Home: React.FC = () => {
   return (
     <>
@@ -12,6 +12,7 @@ const Home: React.FC = () => {
       <main className="min-h-screen flex flex-col">
        <HomeCarousel/>
        <ShopByAge/>
+       <LatestArrivals/>
        <ShopByPrice/>
        <AwardWinningComponent/>
       </main>

@@ -1,178 +1,184 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { FaAngleRight } from "react-icons/fa";
 
-const Menu: React.FC = () => {
+// Sample categories and their options
+const categories = [
+  {
+    name: "Construction Toys",
+    href: "/construction-toys",
+    options: [
+      { name: "Option 1", href: "/option-1" },
+      { name: "Option 2", href: "/option-2" },
+      { name: "Option 3", href: "/option-3" },
+    ],
+  },
+  {
+    name: "Action Figures",
+    href: "/action-figures",
+    options: [
+      { name: "Option A", href: "/option-a" },
+      { name: "Option B", href: "/option-b" },
+      { name: "Option C", href: "/option-c" },
+    ],
+  },
+  {
+    name: "Board Games",
+    href: "/board-games",
+    options: [
+      { name: "Option X", href: "/option-x" },
+      { name: "Option Y", href: "/option-y" },
+      { name: "Option Z", href: "/option-z" },
+    ],
+  },
+];
+
+// Category List Component
+const CategoryList: React.FC<{
+  categories: typeof categories;
+  onCategoryClick: (categoryName: string) => void;
+}> = ({ categories, onCategoryClick }) => {
   return (
-    <div className="flex flex-col h-full">
-      {/* Category 1 */}
-      <div className="relative group">
-  <button className="w-full text-left font-semibold py-2 px-4 rounded hover:bg-gray-200">
-    Construction Toys
-  </button>
-  <div
-    className="absolute left-0 top-full hidden group-hover:block shadow-lg rounded-lg mt-2 z-10"
-    style={{ backgroundColor: '#ffffff' }} // Ensures solid white background
-  >
-    <ul className="py-2">
-      <li>
-        <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-          Option 1
-        </Link>
-      </li>
-      <li>
-        <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-          Option 2
-        </Link>
-      </li>
-      <li>
-        <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-          Option 3
-        </Link>
-      </li>
-    </ul>
+    <div className="w-full ">
+      {categories.map((category, index) => (
+        <div
+          key={index}
+          className="flex items-center justify-between py-2 px-4 cursor-pointer"
+        >
+          <Link href={category.href} className="flex-1 text-left py-2">
+            {category.name}
+          </Link>
+          <FaAngleRight
+            className="ml-4 text-gray-600 cursor-pointer"
+            onClick={() => onCategoryClick(category.name)}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Submenu Component
+const Submenu: React.FC<{
+  activeCategory: string;
+  categories: typeof categories;
+  onBackClick: () => void;
+}> = ({ activeCategory, categories, onBackClick }) => {
+  const category = categories.find((cat) => cat.name === activeCategory);
+
+  return (
+    <div className="absolute top-0 left-0 w-full h-full bg-white transition-transform ease-in-out duration-500 z-30">
+      <div className="p-4">
+        <button
+          onClick={onBackClick}
+          className="flex items-center text-gray-700 mb-4 hover:underline"
+        >
+          <AiOutlineArrowLeft className="mr-2" /> Back
+        </button>
+        <ul className="space-y-2">
+          {category?.options.map((option, index) => (
+            <li key={index}>
+              <Link
+                href={option.href}
+                className="block px-4 py-2 hover:bg-gray-100 rounded"
+              >
+                {option.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+// Auth Buttons Component
+const AuthButtons: React.FC = () => (
+  <div className="mt-auto flex flex-col space-y-4 p-4">
+    <Link
+      href="/login"
+      className="w-full text-center py-3 px-6 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300"
+    >
+      Login
+    </Link>
+    <Link
+      href="/register"
+      className="w-full text-center py-3 px-6 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-all duration-300"
+    >
+      Register
+    </Link>
   </div>
-</div>
+);
 
-      <div className="relative group">
-        <button className="w-full text-left font-semibold py-2 px-4 rounded hover:bg-gray-200">
-          Construction Toys
-        </button>
-        <div className="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 z-10">
-          <ul className="py-2">
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 1
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 2
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 3
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="relative group">
-        <button className="w-full text-left font-semibold py-2 px-4 rounded hover:bg-gray-200">
-          Construction Toys
-        </button>
-        <div className="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 z-10">
-          <ul className="py-2">
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 1
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 2
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 3
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="relative group">
-        <button className="w-full text-left font-semibold py-2 px-4 rounded hover:bg-gray-200">
-          Construction Toys
-        </button>
-        <div className="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 z-10">
-          <ul className="py-2">
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 1
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 2
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 3
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="relative group">
-        <button className="w-full text-left font-semibold py-2 px-4 rounded hover:bg-gray-200">
-          Construction Toys
-        </button>
-        <div className="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 z-10">
-          <ul className="py-2">
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 1
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 2
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 3
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="relative group">
-        <button className="w-full text-left font-semibold py-2 px-4 rounded hover:bg-gray-200">
-          Construction Toys
-        </button>
-        <div className="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 z-10">
-          <ul className="py-2">
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 1
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 2
-              </Link>
-            </li>
-            <li>
-              <Link href="/" className="block px-4 py-2 hover:bg-gray-100">
-                Option 3
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
+// Main Menu Component
+const Menu: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-      {/* Repeat for other categories */}
+  const handleCategoryClick = (categoryName: string) => {
+    setActiveCategory(categoryName);
+  };
 
+  const handleBackClick = () => {
+    setActiveCategory(null);
+  };
+
+  // Toggle menu open/close state
+  useEffect(() => {
+    if (activeCategory !== null) {
+      setIsMenuOpen(true);
+    } else {
+      setIsMenuOpen(false);
+    }
+  }, [activeCategory]);
+
+  // Disable background scrolling when the menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = ""; // Enable scrolling
+    }
+
+    // Clean up the overflow style when component unmounts or menu closes
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  return (
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col  bg-white z-40">
+      {/* Main Categories */}
+      <div
+        className={`flex-1 overflow-y-auto transition-transform ease-in-out duration-500 ${
+          activeCategory ? "-translate-x-full" : "translate-x-0"
+        }`}
+      >
+        <CategoryList
+          categories={categories}
+          onCategoryClick={handleCategoryClick}
+        />
+      </div>
+      <div
+        className={`absolute top-0 left-0 w-full h-full bg-white z-50 transition-transform transition-opacity ease-in-out duration-300 ${
+          activeCategory
+            ? "translate-x-0 opacity-100"
+            : "translate-x-full opacity-0 pointer-events-none"
+        }`}
+      >
+        {activeCategory && (
+          <Submenu
+            activeCategory={activeCategory}
+            categories={categories}
+            onBackClick={handleBackClick}
+          />
+        )}
+      </div>
       {/* Login and Register Buttons */}
-      <div className="mt-auto flex flex-col space-y-4">
-        <Link
-          href="/login"
-          className="w-full text-center py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-600"
-        >
-          Login
-        </Link>
-        <Link
-          href="/register"
-          className="w-full text-center py-2 px-4 rounded bg-green-500 text-white hover:bg-green-600"
-        >
-          Register
-        </Link>
-      </div>
+      <AuthButtons />
     </div>
   );
 };
