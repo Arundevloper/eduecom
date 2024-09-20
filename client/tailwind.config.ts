@@ -12,6 +12,7 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+			
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -49,13 +50,20 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			  'custom-light': '#DCF2F1',
+			  'custom-blue-light': '#7FC7D9',
+			  'custom-blue': '#365486',
+			  'custom-dark': '#0F1035',
+			  'custom-green':'#42a2a2'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+
+		 
   	}
   },
   plugins: [require("tailwindcss-animate")],

@@ -42,17 +42,17 @@ const CategoryList: React.FC<{
   onCategoryClick: (categoryName: string) => void;
 }> = ({ categories, onCategoryClick }) => {
   return (
-    <div className="w-full ">
+    <div className="w-full">
       {categories.map((category, index) => (
         <div
           key={index}
-          className="flex items-center justify-between py-2 px-4 cursor-pointer"
+          className="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-100 rounded-lg transition-all duration-200"
         >
-          <Link href={category.href} className="flex-1 text-left py-2">
+          <Link href={category.href} className="flex-1 text-lg text-gray-800 font-medium">
             {category.name}
           </Link>
           <FaAngleRight
-            className="ml-4 text-gray-600 cursor-pointer"
+            className="ml-4 text-gray-500 cursor-pointer hover:text-gray-700"
             onClick={() => onCategoryClick(category.name)}
           />
         </div>
@@ -70,7 +70,7 @@ const Submenu: React.FC<{
   const category = categories.find((cat) => cat.name === activeCategory);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-white transition-transform ease-in-out duration-500 z-30">
+    <div className="absolute top-0 left-0 w-full h-full bg-white shadow-md transition-transform ease-in-out duration-500 z-30">
       <div className="p-4">
         <button
           onClick={onBackClick}
@@ -78,12 +78,12 @@ const Submenu: React.FC<{
         >
           <AiOutlineArrowLeft className="mr-2" /> Back
         </button>
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {category?.options.map((option, index) => (
             <li key={index}>
               <Link
                 href={option.href}
-                className="block px-4 py-2 hover:bg-gray-100 rounded"
+                className="block px-4 py-2 text-gray-800 font-medium hover:bg-gray-100 rounded-lg transition-all duration-200"
               >
                 {option.name}
               </Link>
@@ -98,17 +98,21 @@ const Submenu: React.FC<{
 // Auth Buttons Component
 const AuthButtons: React.FC = () => (
   <div className="mt-auto flex flex-col space-y-4 p-4">
-    <Link
-      href="/login"
-      className="w-full text-center py-3 px-6 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300"
-    >
-      Login
+    <Link href="/login">
+      {" "}
+      <button className="mt-6 w-full flex items-center justify-center font-semibold py-2 px-4 rounded-lg border-2 border-custom-blue text-custom-blue bg-white transition-colors duration-300 ">
+        Login
+      </button>
     </Link>
     <Link
       href="/register"
-      className="w-full text-center py-3 px-6 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-all duration-300"
-    >
-      Register
+     
+    > <button
+    className=" w-full flex items-center bg-custom-green justify-center font-semibold py-2 px-4 rounded-lg border border-custom-green text-white transition-colors duration-300"
+  >
+   Register
+  </button>
+    
     </Link>
   </div>
 );
@@ -150,17 +154,14 @@ const Menu: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col  bg-white z-40">
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col bg-white z-40 shadow-lg">
       {/* Main Categories */}
       <div
         className={`flex-1 overflow-y-auto transition-transform ease-in-out duration-500 ${
           activeCategory ? "-translate-x-full" : "translate-x-0"
         }`}
       >
-        <CategoryList
-          categories={categories}
-          onCategoryClick={handleCategoryClick}
-        />
+        <CategoryList categories={categories} onCategoryClick={handleCategoryClick} />
       </div>
       <div
         className={`absolute top-0 left-0 w-full h-full bg-white z-50 transition-transform transition-opacity ease-in-out duration-300 ${
@@ -170,11 +171,7 @@ const Menu: React.FC = () => {
         }`}
       >
         {activeCategory && (
-          <Submenu
-            activeCategory={activeCategory}
-            categories={categories}
-            onBackClick={handleBackClick}
-          />
+          <Submenu activeCategory={activeCategory} categories={categories} onBackClick={handleBackClick} />
         )}
       </div>
       {/* Login and Register Buttons */}

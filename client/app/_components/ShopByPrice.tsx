@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 const ShopByPrice: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center gg-white py-5 px-4 sm:px-6 md:px-8">
+    <div className="flex flex-col items-center justify-center gg-white py-10 px-4 sm:px-6 md:px-8">
       {/* Heading */}
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+      <h1 className="text-3xl md:text-4xl font-bold text-custom-blue  mb-4">
         Shop by Price
       </h1>
 

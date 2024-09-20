@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 const ShopByAge: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-white py-5">
+    <div className="flex flex-col items-center justify-center bg-white py-10">
       {/* Heading */}
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 to-indigo-500 text-transparent bg-clip-text mb-6">
+      <h1 className="text-4xl font-bold bg-custom-blue text-transparent bg-clip-text mb-6">
         Shop by Age
       </h1>
 

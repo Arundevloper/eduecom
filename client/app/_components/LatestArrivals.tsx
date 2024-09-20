@@ -1,4 +1,3 @@
-
 import React from "react";
 import ProductCard from "./productCard";
 
@@ -10,7 +9,7 @@ const LatestArrivals: React.FC = () => {
       price: "16.00",
     },
     {
-      image: "https://dummyimage.com/421x261",
+      image: "/product/product2.png",
       title: "Shooting Stars - A Journey Through the Galaxy",
       price: "21.15",
     },
@@ -28,25 +27,27 @@ const LatestArrivals: React.FC = () => {
 
   return (
     <section className="text-gray-600 body-font">
-      <div className="container px-5 py-12 mx-auto">
+      <div className="container px-5 py-10 mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-purple-700">New Arrivals</h1>
+          <h1 className="text-4xl font-bold text-custom-blue ">New Arrivals</h1>
           <p className="mt-2 text-gray-500 text-lg">
             Check out our latest product arrivals!
           </p>
         </div>
 
-        {/* Responsive Product Grid */}
-        <div className="flex flex-wrap -m-4">
-          {newArrivals.map((product, index) => (
-            <ProductCard
-              key={index}
-              image={product.image}
-              title={product.title}
-              price={product.price}
-            />
-          ))}
+        {/* Responsive Product Grid with Horizontal Scroll */}
+        <div className="overflow-x-auto">
+          <div className="flex space-x-4">
+            {newArrivals.map((product, index) => (
+              <ProductCard
+                key={index}
+                image={product.image}
+                title={product.title}
+                price={product.price}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

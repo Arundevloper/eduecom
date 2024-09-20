@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 const AwardWinning: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-white py-5 px-4 sm:px-6 md:px-8">
+    <div className="flex flex-col items-center justify-center bg-white py-10 px-4  sm:px-6 md:px-8">
       {/* Heading */}
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-custom-blue mb-4 text-center">
       Award-Winning Toys Heart-Winning Games 
       </h1>
 
