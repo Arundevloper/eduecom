@@ -4,6 +4,7 @@ import Navbar from "../_layout/Navbar";
 import Footer from "../_layout/Footer";
 import { FiShoppingCart } from "react-icons/fi";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
+import moment from "moment";
 
 function ProductPage() {
   // Dynamic product data
@@ -22,7 +23,6 @@ function ProductPage() {
       "https://dummyimage.com/200x200",
       "https://dummyimage.com/200x200",
       "https://dummyimage.com/200x200",
-      // More images
     ],
   };
 
@@ -31,6 +31,10 @@ function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [visibleStartIndex, setVisibleStartIndex] = useState(0); // Index for visible thumbnails
   const visibleThumbnailCount = 4; // Number of thumbnails to show at a time
+
+  // Estimated Delivery
+  const deliveryDays = 5; // Fixed delivery duration
+  const estimatedDeliveryDate = moment().add(deliveryDays, "days").format("MMMM Do, YYYY");
 
   // Increase quantity
   const increaseQuantity = () => {
@@ -75,14 +79,13 @@ function ProductPage() {
                 {/* Up Button */}
                 <button
                   onClick={scrollUp}
-                 
                   className={`px-10 py-2 text-xl rounded focus:outline-none transition ${
                     visibleStartIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
                   <FiChevronUp />
                 </button>
-                
+
                 {/* Thumbnails */}
                 <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-hidden">
                   {visibleThumbnails.map((img, idx) => (
@@ -99,7 +102,7 @@ function ProductPage() {
                     />
                   ))}
                 </div>
-                
+
                 {/* Down Button */}
                 <button
                   onClick={scrollDown}
@@ -115,6 +118,7 @@ function ProductPage() {
                   <FiChevronDown />
                 </button>
               </div>
+
               {/* Main Image Container with fixed 491x491 size */}
               <div className="w-[500px] h-[500px] flex items-center justify-center bg-white rounded transition-all duration-300 ease-in-out">
                 <img
@@ -125,58 +129,59 @@ function ProductPage() {
               </div>
             </div>
 
-
             {/* Product details */}
             <div className="w-full lg:w-1/2 lg:pl-10  mt-6 lg:mt-0">
               <h1 className="text-3xl title-font text-custom-blue font-medium mb-1">
                 {product.name}
               </h1>
-
               <p className="leading-relaxed">{product.description}</p>
 
               {/* Pricing and Discount */}
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="mt-2 flex items-center">
-                  {/* Discount with Red Background and Rounded Corners */}
                   <p className="bg-red-500 text-white text-sm font-medium mr-4 py-1 px-2 rounded-full">
                     {((500 / (product.price + 500)) * 100).toFixed(0)}% OFF
                   </p>
-                  {/* Grey Price */}
-                  <p className="text-gray-600 text-2xl font-semibold mr-4">
-                    ₹{product.price}
-                  </p>
-                  {/* Original Price */}
-                  <p className="text-gray-400 line-through text-sm">
-                    ₹{(product.price + 500).toFixed(2)}
-                  </p>
+                  <p className="text-gray-600 text-2xl font-semibold mr-4">₹{product.price}</p>
+                  <p className="text-gray-400 line-through text-sm">₹{(product.price + 500).toFixed(2)}</p>
                 </div>
               </div>
 
               {/* Quantity Selector with Label */}
-              <div className="flex items-center mb-5">
-                <span className="mr-4 text-gray-700 font-medium">Quantity:</span>
-                <button
-                  onClick={decreaseQuantity}
-                  className="bg-gray-300 text-gray-600 px-3 py-1 rounded-l focus:outline-none"
-                >
-                  -
-                </button>
-                <span className="px-4 py-1 bg-gray-200 text-gray-900">
-                  {quantity}
-                </span>
-                <button
-                  onClick={increaseQuantity}
-                  className="bg-gray-300 text-gray-600 px-3 py-1 rounded-r focus:outline-none"
-                >
-                  +
-                </button>
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center mb-5">
+                  <span className="mr-4 text-gray-700 font-medium">Quantity:</span>
+                  <button
+                    onClick={decreaseQuantity}
+                    className="bg-gray-300 text-gray-600 px-3 py-1 rounded-l focus:outline-none"
+                  >
+                    -
+                  </button>
+                  <span className="px-4 py-1 bg-gray-200 text-gray-900">{quantity}</span>
+                  <button
+                    onClick={increaseQuantity}
+                    className="bg-gray-300 text-gray-600 px-3 py-1 rounded-r focus:outline-none"
+                  >
+                    +
+                  </button>
+                </div>
+
+                {/* Add to Cart Button */}
+                <div className="flex">
+                  <button className="flex items-center justify-center font-semibold py-2 px-4 rounded-lg border-2 border-custom-blue text-custom-blue bg-white transition-colors duration-300 hover:bg-custom-blue hover:border-custom-blue hover:text-white">
+                    <FiShoppingCart className="mr-2 text-xl" />
+                    Add to Cart
+                  </button>
+                </div>
               </div>
 
-              <div className="flex">
-                <button className="mt-6 w-1/2 flex items-center justify-center font-semibold py-2 px-4 rounded-lg border-2 border-custom-blue text-custom-blue bg-white transition-colors duration-300 hover:bg-custom-blue hover:border-custom-blue hover:text-white">
-                  <FiShoppingCart className="mr-2 text-xl" />
-                  Add to Cart
-                </button>
+              {/* Estimated Delivery Section */}
+              <div className="mt-6 text-gray-600">
+                <p className="font-semibold">Estimated Delivery:</p>
+                <p>{estimatedDeliveryDate}</p>
+                <p className="text-sm text-gray-500">
+                  Order now and receive it within {deliveryDays} days!
+                </p>
               </div>
             </div>
           </div>

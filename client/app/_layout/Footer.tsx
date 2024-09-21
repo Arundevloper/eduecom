@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-gray-400 body-font">
+    <footer className="bg-gray-900 text-gray-400 body-font  mt-auto">
       <div className="container px-8 py-20 mx-auto flex md:items-start lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         {/* Logo and About Section */}
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">

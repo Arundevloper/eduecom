@@ -25,7 +25,7 @@ const Register: React.FC = () => {
     <>
       <Navbar />
       <section className="text-gray-600 body-font ">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
+        <div className="container px-5 py-24 mx-auto flex flex-wrap   items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0 flex flex-col items-center">
             <h1 className="title-font font-medium text-3xl text-gray-900 text-center">
               Create an Account
@@ -35,7 +35,7 @@ const Register: React.FC = () => {
             </p>
           </div>
 
-          <div className="lg:w-2/6 md:w-1/2 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+          <div className="lg:w-2/6 md:w-1/2 rounded-lg border bg-gray-100  p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
             <h2 className="text-custom-dark text-3xl text-center font-medium title-font mb-5">
               Register
             </h2>
@@ -124,10 +124,10 @@ const Register: React.FC = () => {
               <span className="font-semibold text-gray-700">Sign up with Facebook</span>
             </button>
 
-            <p className="text-xs text-gray-500 mt-3">
-              Already have an account?{" "}
-              <Link href="/login" className="text-indigo-500">
-                Log In
+            <p className="text-md text-gray-500 font-bold mt-3">
+           Already have account?{" "}
+              <Link href="/login" className="text-custom-blue">
+              Login  
               </Link>
             </p>
           </div>

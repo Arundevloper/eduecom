@@ -21,7 +21,7 @@ const Login: React.FC = () => {
     <>
       <Navbar />
       <section className="text-gray-600 body-font ">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
+        <div className="container px-5 py-24 mx-auto   flex flex-wrap items-center">
           <div className="flex flex-col items-center justify-center lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0 text-center">
             <h1 className="title-font font-medium text-3xl text-gray-900">
               Welcome Back!
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
             </p>
           </div>
 
-          <div className="lg:w-2/6 md:w-1/2 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+          <div className="lg:w-2/6 md:w-1/2 rounded-lg p-8 bg-gray-100 flex border flex-col md:ml-auto w-full mt-10 md:mt-0">
             <h2 className="text-custom-dark text-3xl text-center font-medium title-font mb-5">
               Log In
             </h2>
@@ -95,11 +95,17 @@ const Login: React.FC = () => {
               <span className="font-semibold text-gray-700">Continue with Facebook</span>
             </button>
 
-            <Link href="/register">
+            {/* <Link href="/register">
               <button className="mt-6 w-full flex items-center bg-white border-custom-blue justify-center font-semibold py-2 px-4 rounded-lg border text-custom-blue transition-colors duration-300">
                 Register
               </button>
-            </Link>
+            </Link> */}
+             <p className="text-md text-gray-500 font-bold mt-3">
+             New Customer?{" "}
+              <Link href="/register" className="text-custom-blue">
+                Register
+              </Link>
+            </p>
           </div>
         </div>
       </section>

@@ -122,28 +122,33 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 items-center">
-            {categories.map((category) => (
-              <div className="relative group" key={category.name}>
-                <Link href="/" className="text-gray-700 hover:text-gray-900">
-                  {category.name}
-                </Link>
-                <div className="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-2 z-50">
-                  <ul className="py-2">
-                    {category.options.map((option, index) => (
-                      <li key={index} className="w-48">
-                        <Link
-                          href="/"
-                          className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                        >
-                          {option}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </nav>
+  {categories.map((category) => (
+    <div className="relative group" key={category.name}>
+      <Link 
+        href="/" 
+        className="text-gray-700 hover:text-gray-900 relative flex items-center"
+      >
+        <span className="transition-colors duration-300">{category.name}</span>
+        <span className="block w-full h-0.5 bg-gray-900 absolute bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+      </Link>
+      <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 z-50 w-48 pointer-events-auto transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+        <ul className="py-2">
+          {category.options.map((option, index) => (
+            <li key={index}>
+              <Link
+                href="/"
+                className="block px-4 py-2 text-gray-600 hover:bg-gray-100 transition-colors duration-300"
+              >
+                {option}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  ))}
+</nav>
+
 
           {/* Icons */}
           <div className="flex space-x-6 items-center">

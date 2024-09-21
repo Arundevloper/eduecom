@@ -95,27 +95,7 @@ const Submenu: React.FC<{
   );
 };
 
-// Auth Buttons Component
-const AuthButtons: React.FC = () => (
-  <div className="mt-auto flex flex-col space-y-4 p-4">
-    <Link href="/login">
-      {" "}
-      <button className="mt-6 w-full flex items-center justify-center font-semibold py-2 px-4 rounded-lg border-2 border-custom-blue text-custom-blue bg-white transition-colors duration-300 ">
-        Login
-      </button>
-    </Link>
-    <Link
-      href="/register"
-     
-    > <button
-    className=" w-full flex items-center bg-custom-green justify-center font-semibold py-2 px-4 rounded-lg border border-custom-green text-white transition-colors duration-300"
-  >
-   Register
-  </button>
-    
-    </Link>
-  </div>
-);
+
 
 // Main Menu Component
 const Menu: React.FC = () => {
@@ -162,6 +142,24 @@ const Menu: React.FC = () => {
         }`}
       >
         <CategoryList categories={categories} onCategoryClick={handleCategoryClick} />
+        <div className="mt-auto flex flex-col space-y-4 p-4">
+    <Link href="/login">
+      {" "}
+      <button className="mt-6 w-full flex items-center justify-center font-semibold py-2 px-4 rounded-lg border-2 border-custom-blue text-custom-blue bg-white transition-colors duration-300 ">
+        Login
+      </button>
+    </Link>
+    <Link
+      href="/register"
+     
+    > <button
+    className=" w-full flex items-center bg-custom-green justify-center font-semibold py-2 px-4 rounded-lg border border-custom-green text-white transition-colors duration-300"
+  >
+   Register
+  </button>
+    
+    </Link>
+  </div>
       </div>
       <div
         className={`absolute top-0 left-0 w-full h-full bg-white z-50 transition-transform transition-opacity ease-in-out duration-300 ${
@@ -174,8 +172,7 @@ const Menu: React.FC = () => {
           <Submenu activeCategory={activeCategory} categories={categories} onBackClick={handleBackClick} />
         )}
       </div>
-      {/* Login and Register Buttons */}
-      <AuthButtons />
+    
     </div>
   );
 };

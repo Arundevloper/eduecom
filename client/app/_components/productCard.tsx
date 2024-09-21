@@ -9,8 +9,8 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ image, title, price }) => {
   return (
-    <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-      <div className="bg-custom-light to-white p-6 rounded-lg duration-300">
+    <div className="p-4">
+      <div className="bg-gray-100 to-white p-6 rounded-lg duration-300">
         {/* Centered Image */}
         <div className="bg-gray-100 p-2 rounded-lg flex justify-center items-center">
           <a
